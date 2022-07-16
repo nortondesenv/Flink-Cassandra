@@ -2,7 +2,9 @@
 *.iml
 *.config
 .idea
+.factorypath
 target/
 jars/
 cache_repositories
 /nbproject/
+dependency-reduced-pom.xml
