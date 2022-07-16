@@ -1,0 +1,19 @@
+FROM maven:3.8-jdk-11-slim AS builder
+
+COPY ./src /opt/flink-enrich/src
+COPY ./pom.xml /opt/flink-enrich/pom.xml
+
+WORKDIR /opt/flink-enrich
+RUN cd /opt/flink-enrich && mvn clean install
+
+FROM flink:1.15.0-scala_2.12-java11
+
+WORKDIR /opt/flink/bin
+
+COPY ./submit.sh /opt/flink/submit.sh
+ADD submit.sh /
+RUN chmod +x /submit.sh
+
+COPY --from=builder /opt/flink-enrich/target/flink-enrich-*.jar /opt/FlinkJob.jar
+
+ENTRYPOINT ["/submit.sh"]

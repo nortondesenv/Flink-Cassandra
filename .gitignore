@@ -1,0 +1,8 @@
+*.out
+*.iml
+*.config
+.idea
+target/
+jars/
+cache_repositories
+/nbproject/

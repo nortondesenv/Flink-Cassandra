@@ -1,0 +1,56 @@
+version: '3.7'
+
+networks:
+  default:
+    external: true
+    name: flink-enrich
+
+services:
+  jobmanager:
+    image: flink:1.15.0-scala_2.12-java11
+    container_name: jobmanager
+    ports:
+      - "8081:8081"
+      - "6123:6123"
+      - "6124:6124"
+      - "6125:6125"
+    healthcheck:
+      test: curl --fail http://localhost:8081/overview
+      interval: 15s
+      timeout: 5s
+      retries: 30
+      start_period: 0s
+    command: jobmanager
+    environment:
+      - |
+        FLINK_PROPERTIES=
+        jobmanager.rpc.address: jobmanager
+  taskmanager:
+    image: flink:1.15.0-scala_2.12-java11
+    depends_on:
+      - jobmanager
+    command: taskmanager
+    healthcheck:
+      test: exit 0
+      interval: 15s
+      timeout: 5s
+      retries: 30
+      start_period: 5s
+    environment:
+      - |
+        FLINK_PROPERTIES=
+        jobmanager.rpc.address: jobmanager
+        taskmanager.numberOfTaskSlots: 2
+        parallelism.default: 2
+        taskmanager.memory.network.max: 268435460b
+        taskmanager.memory.network.min: 268435460b
+        taskmanager.memory.network.fraction: .4
+        cluster.evenly-spread-out-slots: true
+  job_submit:
+    build:
+      context: ./
+      dockerfile: Dockerfile.local
+    environment:
+      - |
+        JOBS_TO_SUBMIT=
+        ProductEnrich
