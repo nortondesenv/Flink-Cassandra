@@ -6,7 +6,9 @@ Repository for testing use of Flink with Cassandra.
 
 ## Features
 
-- ⚡️ [Flink](https://nightlies.apache.org/flink/flink-docs-release-1.15/)
+-  [Flink](https://nightlies.apache.org/flink/flink-docs-release-1.15/)
+-  [Cassandra](https://cassandra.apache.org/_/index.html)
+-  [Kafka](https://kafka.apache.org/documentation/)
 
 
 
