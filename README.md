@@ -30,5 +30,5 @@ git clone ${}
 Just run and visit http://localhost:8081
 
 ```bash
-make develop
+make local
 ```

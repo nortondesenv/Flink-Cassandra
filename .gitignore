@@ -7,4 +7,5 @@ target/
 jars/
 cache_repositories
 /nbproject/
+data/
 dependency-reduced-pom.xml
