@@ -19,7 +19,7 @@ Repository for testing use of Flink with Cassandra.
 
 
 ```bash
-git clone ${}
+git clone https://github.com/nortondesenv/Flink-Cassandra.git
 ```
 
 
