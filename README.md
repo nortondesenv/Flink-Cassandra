@@ -1,7 +1,7 @@
-<h1 align='center'>
+<h3 align='center'>
   <img src="https://cdn.icon-icons.com/icons2/2699/PNG/512/apache_flink_logo_icon_169588.png">
-    Repository for testing use of Flink with Cassandra.
-</h1>
+<p>Repository for testing use of Flink with Cassandra.</p>
+</h3>
 
 
 ## Features
